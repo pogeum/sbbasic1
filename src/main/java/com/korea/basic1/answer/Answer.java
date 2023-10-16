@@ -7,7 +7,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
-
+import com.korea.basic1.user.SiteUser;
 @Getter
 @Setter
 @Entity
@@ -22,4 +22,8 @@ public class Answer {
     private LocalDateTime createDate;
     @ManyToOne
     private Question question;
+    @ManyToOne
+    private SiteUser author;
+    private LocalDateTime modifyDate;
+
 }

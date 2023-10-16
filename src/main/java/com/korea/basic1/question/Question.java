@@ -13,6 +13,8 @@ import jakarta.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.ManyToOne;
+import com.korea.basic1.user.SiteUser;
 
 
 import java.time.LocalDateTime;
@@ -29,7 +31,12 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList;
+
+    @ManyToOne
+    private SiteUser author;
 }
