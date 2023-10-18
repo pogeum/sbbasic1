@@ -18,7 +18,8 @@ import com.korea.basic1.user.SiteUser;
 
 
 import java.time.LocalDateTime;
-
+import java.util.Set;
+import jakarta.persistence.ManyToMany;
 @Getter
 @Setter
 @Entity
@@ -32,6 +33,8 @@ public class Question {
     private String content;
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
+    @ManyToMany
+    Set<SiteUser> voter;
 
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)

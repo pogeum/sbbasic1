@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import com.korea.basic1.user.SiteUser;
+import java.util.Set;
+import jakarta.persistence.ManyToMany;
 @Getter
 @Setter
 @Entity
@@ -25,5 +27,7 @@ public class Answer {
     @ManyToOne
     private SiteUser author;
     private LocalDateTime modifyDate;
+    @ManyToMany
+    Set<SiteUser> voter;
 
 }
