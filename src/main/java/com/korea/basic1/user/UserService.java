@@ -1,11 +1,10 @@
 package com.korea.basic1.user;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import lombok.RequiredArgsConstructor;
 import java.util.Optional;
-import com.korea.basic1.controller.DataNotFoundException;
+import com.korea.basic1.DataNotFoundException;
 @RequiredArgsConstructor
 @Service
 public class UserService {

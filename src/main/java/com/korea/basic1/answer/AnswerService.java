@@ -7,7 +7,7 @@ import com.korea.basic1.user.SiteUser;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import com.korea.basic1.controller.DataNotFoundException;
+import com.korea.basic1.DataNotFoundException;
 
 @RequiredArgsConstructor
 @Service

@@ -1,5 +1,7 @@
-package com.korea.basic1.user;
+package com.korea.basic1.controller;
 
+import com.korea.basic1.user.UserCreateForm;
+import com.korea.basic1.user.UserService;
 import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
