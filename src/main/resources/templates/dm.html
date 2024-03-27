@@ -1,0 +1,117 @@
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}">
+<head>
+
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+    <script src="/socket.js"></script>
+
+    <script>
+        console.log('first');
+var socket = new SockJS('/ws-stomp');
+stompClient = Stomp.over(socket);
+<!--        var myprofileName = 'me';-->
+
+
+
+
+stompClient.connect({}, function (frame) {
+<!--            setConnected(true);-->
+// 연결 상태 전송
+sendConnectionStatus(true);
+console.log('aaaaa');
+console.log(status);
+
+
+console.log('Connected: ' + frame);
+console.log(myprofileName);
+stompClient.subscribe('/sub/messaging', function (messaging) {
+ showMessaging(JSON.parse(messaging.body), myprofileName);
+});
+});
+    </script>
+
+</head>
+
+<body>
+
+
+
+    <div layout:fragment="content" class="container my-3">
+
+        <div class="msger-chat" id="savemessages" >
+    <!--        <div th:each="message, iterStat : ${dmPageMessages}">-->
+    <!--            <div th:class="${message.authorId == me.getId} ? 'msg right-msg' : 'msg left-msg'" th:id="${iterStat.last} ? 'scrollToAnchor' : ''">-->
+    <!--                <div class="msg-bubble">-->
+    <!--                    &lt;!&ndash;                        <div th:if="${message.image != null}" class="msg-image" id="msg-image">&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                            <img src="" alt="">&ndash;&gt;-->
+    <!--                    &lt;!&ndash;                        </div>&ndash;&gt;-->
+    <!--                    <img th:if="${message.image}" th:src="${message.image}" alt="img" style="width:150px; height:150px;">-->
+    <!--                    <div class="msg-text" th:id="${message.id}" th:text="${message.content}">-->
+    <!--                        &lt;!&ndash;                            <p th:text="${message.image}"></p>&ndash;&gt;-->
+    <!--                        &lt;!&ndash;                            <img th:src="${message.image}" alt="img">&ndash;&gt;-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+        </div>
+
+        <div class="msger-inputarea">
+    <!--        <input type="hidden" id="createDate" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}">-->
+    <!--        <input type="hidden" id="receiver" th:value="${partner.profileName}">-->
+            <input type="text" id="content" class="msger-input" placeholder="Enter your message...">
+            <button type="submit" id="btn-chat" class="msger-send-btn">✔</button>
+        </div>
+    </div>
+    <script>
+
+
+
+
+ function sendContent() {//이게  sendmessage!!!!!!!!!!
+     // content 입력 필드에서 값 가져오기
+     console.log('dkjouewrojiqwe;');
+     var contentValue = $("#content").val();
+ }
+
+ function sendConnectionStatus(status) {
+     var status = 'sender.connected'
+     stompClient.send("/pub/connect-status", {}, status.toString());
+ }
+
+ //앵커기능
+ document.addEventListener('DOMContentLoaded', function() {
+
+         var anchorElement = document.getElementById('scrollToAnchor');
+
+         if(anchorElement) {
+             anchorElement.scrollIntoView({behavior : 'auto'});
+         }
+
+     }
+
+ )
+
+ var selectedFiles; // 전역 변수로 선택된 파일들을 저장
+
+ $("#dmImage").on("change", function(event) {
+     // 파일 선택 시 전역 변수에 저장
+     selectedFiles = event.target.files;
+     console.log(selectedFiles);
+ });
+
+
+ function sendFilesToServer(files) {
+     // 여기에서 파일들을 WebSocket을 통해 서버로 전송하는 로직을 작성
+     // 예: 웹소켓 세션을 열고 파일 데이터를 전송
+ }
+    </script>
+</body>
+</html>
